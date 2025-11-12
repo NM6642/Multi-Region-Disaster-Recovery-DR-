@@ -100,5 +100,9 @@ terraform apply
 - Observe that the backup website continues to serve the content without interruption.  
 - This demonstrates the disaster recovery (DR) failover mechanism in action.
 
+## Why This Project 
+
+- When a single AWS region experiences downtime, websites hosted only in that region can go offline.For example if AWS US-EAST-1 outage    entire websites and applications can go offline if they are hosted in only one region. 
+- This project ensures that your static website remains **available even if one region fails**, by automatically replicating data and  enabling **multi-region failover**.  
 
 

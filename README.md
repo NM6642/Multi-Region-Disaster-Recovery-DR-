@@ -20,6 +20,31 @@ This project demonstrates a **multi-region disaster recovery setup** using **AWS
 
 ---
 
+## How It Works
+
+1. **Terraform provisions resources**:
+   - Primary S3 bucket in your chosen region  
+   - Backup S3 bucket in a different region  
+   - IAM role and policy for replication  
+   - Bucket replication configuration  
+
+2. **Static website upload**:
+   - Upload files to the primary bucket:  
+     ```bash
+     aws s3 cp ../static-site/index.html s3://<primary-bucket-name>/
+     ```
+   - Replication automatically copies files to the backup bucket.  
+
+3. - Bucket policies allow public access **only for static website hosting**. All other access is controlled via IAM roles and replication policies. This setup is **read-only** and does not expose sensitive data.
+
+
+4. **Health checks monitor websites**:
+   - If the primary website fails, traffic can be directed to the backup bucket.  
+   - DNS failover can be implemented using Route53 health checks.  
+
+5. **Terraform Outputs** provide URLs for verification in your chosen regions.
+
+---
 ## Screenshots
 
 ### 1. Primary Bucket Website
@@ -53,30 +78,7 @@ Failover mechanism tested by redirecting users to the backup site.
 
 ---
 
-## How It Works
 
-1. **Terraform provisions resources**:
-   - Primary S3 bucket in your chosen region  
-   - Backup S3 bucket in a different region  
-   - IAM role and policy for replication  
-   - Bucket replication configuration  
-
-2. **Static website upload**:
-   - Upload files to the primary bucket:  
-     ```bash
-     aws s3 cp ../static-site/index.html s3://<primary-bucket-name>/
-     ```
-   - Replication automatically copies files to the backup bucket.  
-
-3. **Bucket policies** allow public access to host static websites.  
-
-4. **Health checks monitor websites**:
-   - If the primary website fails, traffic can be directed to the backup bucket.  
-   - DNS failover can be implemented using Route53 health checks.  
-
-5. **Terraform Outputs** provide URLs for verification in your chosen regions.
-
----
 
 ## Commands to Run Locally
 
@@ -97,5 +99,6 @@ terraform apply
 - Temporarily remove or rename `index.html` in the primary S3 bucket.  
 - Observe that the backup website continues to serve the content without interruption.  
 - This demonstrates the disaster recovery (DR) failover mechanism in action.
+
 
 

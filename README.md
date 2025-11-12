@@ -31,7 +31,7 @@ This project demonstrates a **multi-region disaster recovery setup** using **AWS
 ### 3. Terraform Apply Output
 Terraform provisions all resources and outputs bucket URLs based on your chosen regions.
 
-![Terraform Apply](Terraform_apply)
+![Terraform Apply](Terraform_apply.png)
 
 ### 4. Health Check Failure
 When the primary website is down, health checks detect failure.
@@ -97,4 +97,5 @@ terraform apply
 - Temporarily remove or rename `index.html` in the primary S3 bucket.  
 - Observe that the backup website continues to serve the content without interruption.  
 - This demonstrates the disaster recovery (DR) failover mechanism in action.
+
 

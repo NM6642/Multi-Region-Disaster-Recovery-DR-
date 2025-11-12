@@ -1,0 +1,22 @@
+# Terraform local files
+.terraform/
+*.tfstate
+*.tfstate.backup
+crash.log
+override.tf
+override.tf.json
+terraform.tfvars
+*.tfvars.json
+
+# AWS credentials and keys
+*.pem
+*.key
+.aws/credentials
+.aws/config
+
+# Optional: OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

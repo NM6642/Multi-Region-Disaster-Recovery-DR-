@@ -106,3 +106,4 @@ terraform apply
 - This project ensures that your static website remains **available even if one region fails**, by automatically replicating data and  enabling **multi-region failover**.  
 
 
+
